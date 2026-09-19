@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Happy Birthday Sakshi! ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body { font-family: 'Poppins', sans-serif; min-height: 100vh; overflow-x: hidden; text-align: center; }
+    
+    .next-corner-btn {
+      position: fixed; bottom: 22px; right: 20px;
+      background: linear-gradient(135deg, #ff3366, #ff758c);
+      color: #fff; font-weight: 600; font-size: 1rem;
+      padding: 12px 24px; border-radius: 50px; border: none;
+      box-shadow: 0 8px 20px rgba(255, 51, 102, 0.45);
+      cursor: pointer; z-index: 999;
+    }
+    .screen {
+      display: none; min-height: 100vh; width: 100%;
+      padding: 30px 16px 90px; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .screen.active { display: flex; animation: fadeIn 0.6s ease forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* PAGE 1 - PINK */
+    #page1 { background: linear-gradient(145deg, #ff9a9e 0%, #fecfef 60%, #fad0c4 100%); }
+    .pink-popup-card {
+      background: rgba(255, 255, 255, 0.92); border-radius: 30px;
+      padding: 35px 20px; width: 100%; max-width: 400px;
+      box-shadow: 0 20px 45px rgba(255, 77, 109, 0.3); border: 3px solid #ffccd5;
+    }
+    .curve-svg { width: 100%; max-width: 320px; height: 110px; }
+    .curved-text { font-size: 32px; font-weight: 700; fill: #e63946; letter-spacing: 5px; }
+    .name-sakshi {
+      font-family: 'Great Vibes', cursive; font-size: 4.6rem; color: #d90429;
+      margin: -10px 0 5px; animation: pulse 1.8s infinite ease-in-out;
+    }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .subtitle-love { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #ff4d6d; font-weight: 700; }
+
+    /* PAGE 2 - BLUE 10 PHOTOS */
+    #page2 { background: linear-gradient(135deg, #0a192f 0%, #172a45 50%, #203a43 100%); color: #fff; justify-content: flex-start; padding-top: 35px; }
+    .page2-title { font-family: 'Dancing Script', cursive; font-size: 2.6rem; color: #80ed99; margin-bottom: 4px; }
+    .photo-grid-10 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; width: 100%; max-width: 480px; margin: 20px 0 40px; }
+    .bday-frame {
+      position: relative; background: #fff; padding: 8px 8px 16px;
+      border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+    }
+    .bday-frame img { width: 100%; height: 155px; object-fit: cover; border-radius: 6px; display: block; }
+    .photo-num-badge {
+      position: absolute; top: -7px; left: -7px;
+      background: linear-gradient(135deg, #ffd700, #ff9900); color: #000;
+      font-size: 0.8rem; font-weight: 700; width: 26px; height: 26px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3); border: 1.5px solid #fff;
+    }
+    .ribbon-tag { font-size: 0.74rem; font-weight: 600; color: #333; margin-top: 6px; }
+
+    /* PAGE 3 - NOTE */
+    #page3 { background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); color: #333; }
+    .letter-parchment {
+      background: #fffdfa; width: 100%; max-width: 430px; border-radius: 20px;
+      padding: 30px 22px; border: 2px solid #f1c0b9;
+      box-shadow: 0 15px 35px rgba(235, 110, 133, 0.15); text-align: left;
+    }
+    .letter-title { font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: #e63946; margin-bottom: 12px; }
+    .editable-note-box { font-size: 0.98rem; line-height: 1.8; color: #4a4a4a; outline: none; border-left: 3px solid #ffccd5; padding-left: 14px; }
+
+    /* PAGE 4 - CAKE */
+    #page4 { background: radial-gradient(circle at center, #2e083d 0%, #12011b 100%); color: #fff; overflow: hidden; position: relative; }
+    .corner-balloon { position: fixed; font-size: 2.8rem; pointer-events: none; z-index: 10; }
+    .tl { top: 15px; left: 15px; } .tr { top: 15px; right: 15px; }
+    .bl { bottom: 25px; left: 15px; } .br { bottom: 25px; right: 15px; }
+    
+    .cake-stage { position: relative; margin: 25px auto; width: 240px; height: 210px; cursor: pointer; }
+    .white-round-cake {
+      position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
+      width: 200px; height: 120px;
+      background: linear-gradient(to bottom, #ffffff 0%, #fef4f6 70%, #f7dbe3 100%);
+      border-radius: 20px 20px 14px 14px; border: 3px solid #ffccd5;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+    .flower { position: absolute; font-size: 1.4rem; }
+    .candle {
+      position: absolute; top: 35px; left: 50%; transform: translateX(-50%);
+      width: 10px; height: 45px;
+      background: repeating-linear-gradient(45deg, #ff758c, #ff758c 6px, #ffffff 6px, #ffffff 12px);
+      border-radius: 4px; z-index: 5;
+    }
+    .flame {
+      position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
+      width: 14px; height: 22px; background: #ffbe0b; border-radius: 50% 50% 35% 35%;
+      box-shadow: 0 0 16px 6px #fb5607; animation: flicker 0.6s infinite alternate;
+    }
+    @keyframes flicker { 0% { transform: translateX(-50%) scale(1); } 100% { transform: translateX(-50%) scale(1.15); } }
+    .flame.off { display: none; }
+    .cake-stage.slashed { transform: scale(0.95); filter: drop-shadow(0 0 25px #ff758c); transition: 0.4s; }
+    
+    .cake-hint { font-size: 1.05rem; color: #f7cad0; font-weight: 600; margin-top: 15px; animation: pulse 1.4s infinite; }
+    .grand-finale-message { display: none; margin-top: 25px; animation: fadeIn 1s forwards; }
+    .grand-title { font-family: 'Great Vibes', cursive; font-size: 3.2rem; color: #ff99c8; text-shadow: 0 0 20px #ff3366; }
+    .grand-sub { font-family: 'Dancing Script', cursive; font-size: 2rem; color: #fcf6bd; margin-top: 8px; }
+    #canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 100; }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+
+  <!-- SCREEN 1 -->
+  <div class="screen active" id="page1">
+    <div class="pink-popup-card">
+      <svg class="curve-svg" viewBox="0 0 320 110">
+        <path id="path" d="M 30 100 A 130 85 0 0 1 290 100" fill="transparent" />
+        <text class="curved-text"><textPath href="#path" startOffset="50%" text-anchor="middle">HAPPY BIRTHDAY</textPath></text>
+      </svg>
+      <h1 class="name-sakshi">Sakshi</h1>
+      <p class="subtitle-love">Happiest Birthday, My Love ❤️</p>
+    </div>
+    <button class="next-corner-btn" onclick="nextPage(2)">Next ➔</button>
+  </div>
+
+  <!-- SCREEN 2 -->
+  <div class="screen" id="page2">
+    <h2 class="page2-title">10 Beautiful Moments ✨</h2>
+    <p style="font-size:0.95rem; color:#c7f9cc;">Every picture carries a piece of my heart</p>
+    <div class="photo-grid-10">
+      <div class="bday-frame"><span class="photo-num-badge">1</span><img src="https://i.postimg.cc/sGc76g4s/IMG-20250523-115750791-HDR-AE-2.jpg" /><p class="ribbon-tag">Pretty in Blue 💙</p></div>
+      <div class="bday-frame"><span class="photo-num-badge">2</span><img src="https://i.postimg.cc/xNYL3zH6/IMG-20260404-181956849-HDR-AE-2.jpg" /><p class="ribbon-tag">Gentle Smile 💫</p></div>
+      <div class="bday-frame"><span class="photo-num-badge">3</span><img src="https://i.postimg.cc/5HhBjG23/IMG-20260409-180733096-PORTRAIT-2.jpg" /><p class="ribbon-tag">Cafe Dates ☕</p></div>
+      <div class="bday-frame"><span class="photo-num-badge">4</span><img src="https://i.postimg.cc/14Zdj7rr/IMG-20260421-003916520-AE.jpg" /><p class="ribbon-tag">Prettier Than Flowers 🌺</p></div>
+      <div class="bday-frame"><span class="photo-num-badge">5</span><img src="https://i.postimg.cc/SYqcfM8W/IMG-20260508-125810453-PORTRAIT-2.jpg" /><p class="ribbon-tag">Grace & Elegance 🌿</p></div>
+      <div class="bday-frame"><span class="photo-num-badge">6</span><img src="https://i.postimg.cc/XBGXFN1Q/1756614302239.png" /><p class="ribbon-tag">Absolute Royalty 👑✨</p></div>
+      <div class="bday-frame"><span class="photo-num-badge">7</span><img src="https://i.postimg.cc/p5hy8Vch/IMG-20250731-WA0006.jpg" /><p class="ribbon-tag">My Favorite Face 🥰</p></div>
+      <div class="bday-frame"><span class="photo-num-badge">8</span><img src="https://i.postimg.cc/304WprfG/IMG-20251127-WA0036-3.jpg" /><p class="ribbon-tag">Charming as Ever 🖤</p></div>
+      <div class="bday-frame"><span class="photo-num-badge">9</span><img src="https://i.postimg.cc/PvpNZfVb/IMG-20260114-WA0091.jpg" /><p class="ribbon-tag">Movie Dates 🎬❤️</p></div>
+      <div class="bday-frame"><span class="photo-num-badge">10</span><img src="https://i.postimg.cc/vxgD982m/IMG-20260310-WA0105-2.jpg" /><p class="ribbon-tag">Forever & Always ♾️</p></div>
+    </div>
+    <button class="next-corner-btn" onclick="nextPage(3)">Next ➔</button>
+  </div>
+
+  <!-- SCREEN 3 -->
+  <div class="screen" id="page3">
+    <div class="letter-parchment">
+      <h2 class="letter-title">Dearest Sakshi,</h2>
+      <div class="editable-note-box" contenteditable="true">
+        On this special day, I just want you to know how grateful I am to have you in my life. Your smile turns my darkest days into pure light, and your warmth is my favorite comfort in this world.
+
+        From our silly laughs to our quiet movie dates, every moment with you is precious. May this year bring you all the happiness, success, and love you deserve.
+
+        Happy Birthday, my love! ❤️
+      </div>
+      <p style="font-size:0.75rem; color:#888; text-align:right; margin-top:12px;">✏️ (Tap above to edit anytime)</p>
+    </div>
+    <button class="next-corner-btn" onclick="nextPage(4)">Next ➔</button>
+  </div>
+
+  <!-- SCREEN 4 -->
+  <div class="screen" id="page4">
+    <div class="corner-balloon tl">🎈</div>
+    <div class="corner-balloon tr">🎈</div>
+    <div class="corner-balloon bl">🎈</div>
+    <div class="corner-balloon br">🎈</div>
+
+    <div class="cake-stage" id="cake" onclick="cutCake()">
+      <div class="candle"><div class="flame" id="flame"></div></div>
+      <div class="white-round-cake">
+        <span class="flower" style="bottom:10px;left:15px;">🌸</span>
+        <span class="flower" style="bottom:8px;left:60px;">🌺</span>
+        <span class="flower" style="bottom:10px;right:60px;">🌸</span>
+        <span class="flower" style="bottom:8px;right:15px;">🌺</span>
+        <span class="flower" style="top:-10px;left:30px;">🌸</span>
+        <span class="flower" style="top:-10px;right:30px;">🌸</span>
+        <span class="flower" style="top:-14px;left:50%;transform:translateX(-50%);">🌹</span>
+      </div>
+    </div>
+    <p class="cake-hint" id="hint">🎂 Click on the cake to celebrate your birthday!</p>
+
+    <div class="grand-finale-message" id="finale">
+      <h1 class="grand-title">Happiest Birthday to You, My Love! 💖</h1>
+      <p class="grand-sub">Sakshi, You Are My Entire Universe! ✨🎆</p>
+    </div>
+  </div>
+
+  <script>
+    function nextPage(n) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById('page' + n).classList.add('active');
+      window.scrollTo(0, 0);
+      if (n === 2) confetti({ particleCount: 35, spread: 60, origin: { y: 0.8 } });
+    }
+
+    let cut = false;
+    function cutCake() {
+      if (cut) return;
+      cut = true;
+      document.getElementById('flame').classList.add('off');
+      document.getElementById('cake').classList.add('slashed');
+      document.getElementById('hint').style.display = 'none';
+
+      // Fireworks
+      confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+      let bursts = 0;
+      let timer = setInterval(() => {
+        confetti({ particleCount: 50, angle: 60, spread: 55, origin: { x: 0 } });
+        confetti({ particleCount: 50, angle: 120, spread: 55, origin: { x: 1 } });
+        if (++bursts > 5) clearInterval(timer);
+      }, 400);
+
+      // Flower rain
+      startRain();
+
+      setTimeout(() => {
+        document.getElementById('finale').style.display = 'block';
+        confetti({ particleCount: 120, spread: 100, origin: { y: 0.5 } });
+      }, 2000);
+    }
+
+    // Flower canvas
+    const cvs = document.getElementById('canvas');
+    const ctx = cvs.getContext('2d');
+    let pts = [];
+    function resize() { cvs.width = window.innerWidth; cvs.height = window.innerHeight; }
+    window.onresize = resize; resize();
+
+    function startRain() {
+      const items = ['🌸', '🌺', '🌹', '✨', '💖'];
+      for (let i = 0; i < 35; i++) {
+        pts.push({
+          x: Math.random() * cvs.width, y: -20,
+          char: items[Math.floor(Math.random() * items.length)],
+          s: Math.random() * 16 + 18,
+          vy: Math.random() * 2 + 1.5,
+          vx: (Math.random() - 0.5) * 2
+        });
+      }
+      function loop() {
+        ctx.clearRect(0, 0, cvs.width, cvs.height);
+        pts.forEach((p, i) => {
+          p.y += p.vy; p.x += p.vx;
+          ctx.font = p.s + 'px serif'; ctx.fillText(p.char, p.x, p.y);
+          if (p.y > cvs.height + 30) p.y = -20;
+        });
+        requestAnimationFrame(loop);
+      }
+      loop();
+    }
+  </script>
+</body>
+</html>
