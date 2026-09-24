@@ -5,17 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Happy Birthday Sakshi! ❤️</title>
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Dancing+Script:wght@700&family=Great+Vibes&family=Montserrat:wght@400;600;800;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Dancing+Script:wght@700&family=Great+Vibes&family=Montserrat:wght@600;800;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <!-- Confetti Library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
-    :root {
-      --ruby-dark: #6e0d25;
-      --ruby-red: #c9184a;
-      --deep-crimson: #800f2f;
-    }
-
     * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-tap-highlight-color: transparent; }
 
     html, body {
@@ -28,24 +22,16 @@
       text-align: center;
     }
 
+    /* Page Setup */
     .page {
       display: none;
       min-height: 100vh;
       width: 100%;
-      padding: 30px 16px 80px;
+      padding: 25px 16px 80px;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
-    }
-    
-    .page.active {
-      display: flex;
-      animation: smoothFade 0.4s ease-out forwards;
-    }
-    @keyframes smoothFade {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
 
     /* Common Button Styling */
@@ -54,78 +40,45 @@
       color: #fff;
       font-weight: 800;
       font-size: 1.15rem;
-      padding: 16px 36px;
+      padding: 16px 40px;
       border-radius: 50px;
       border: 2px solid #ffd700;
-      box-shadow: 0 10px 25px rgba(217, 4, 41, 0.45);
+      box-shadow: 0 8px 25px rgba(217, 4, 41, 0.45);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       letter-spacing: 1px;
-      transition: transform 0.15s, box-shadow 0.15s;
+      transition: transform 0.15s;
     }
-    .action-btn:active { transform: scale(0.96); }
+    .action-btn:active { transform: scale(0.95); }
 
     /* ===================================================
-       STAGE 1: ANIMATED YELLOW LANDING PAGE
+       STAGE 1: YELLOW LANDING PAGE (PURE SVG & HTML)
        =================================================== */
     #page-yellow-landing {
-      background: radial-gradient(circle at center, #fff07c 0%, #ffd000 50%, #f4a261 100%);
+      background: radial-gradient(circle at center, #fff176 0%, #ffd000 55%, #f4a261 100%);
       color: #5c0017;
-      overflow: hidden;
+      display: flex; /* Active by default */
     }
 
-    .arc-text-wrapper {
-      position: relative;
-      width: 340px;
-      height: 160px;
-      margin: 15px auto 10px;
-      display: flex;
-      justify-content: center;
+    .svg-arc-wrapper {
+      width: 100%;
+      max-width: 380px;
+      height: 140px;
+      margin: 10px auto 0;
+      display: block;
     }
 
-    .arc-letter {
-      position: absolute;
-      top: 140px;
-      left: 50%;
-      font-family: 'Cinzel', serif;
-      font-size: 1.55rem;
-      font-weight: 900;
-      color: #6a040f;
-      text-shadow: 0 2px 6px rgba(106, 4, 15, 0.25);
-      transform-origin: 0 -130px;
-      opacity: 0;
-      animation: dropLetter 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
-    }
-
-    @keyframes dropLetter {
-      from { opacity: 0; transform: translateY(-40px) scale(0.5); }
-      to { opacity: 1; }
-    }
-
-    .sakshi-name-wrapper {
-      display: flex;
-      justify-content: center;
-      gap: 2px;
-      margin: 10px 0 15px;
-    }
-
-    .sakshi-letter {
+    .sakshi-title-text {
       font-family: 'Great Vibes', cursive;
-      font-size: 5.5rem;
+      font-size: 5.6rem;
       color: #9d0208;
-      line-height: 1;
+      line-height: 1.1;
+      margin: 0 0 15px 0;
       text-shadow: 0 4px 15px rgba(157, 2, 8, 0.3);
-      opacity: 0;
-      display: inline-block;
-      animation: popSakshi 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
-    }
-
-    @keyframes popSakshi {
-      from { opacity: 0; transform: scale(0.3) translateY(25px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
+      display: block;
     }
 
     .bday-date-yellow {
@@ -136,26 +89,12 @@
       color: #ffd000;
       font-weight: 800;
       font-size: 1.25rem;
-      padding: 10px 26px;
+      padding: 12px 28px;
       border-radius: 50px;
       letter-spacing: 3px;
       box-shadow: 0 8px 20px rgba(106, 4, 15, 0.4);
       border: 2px solid #ffd000;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards;
-      animation-delay: 2.2s;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .landing-next-btn-box {
-      margin-top: 35px;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards;
-      animation-delay: 2.5s;
+      margin: 10px 0 35px 0;
     }
 
     /* ===================================================
@@ -381,7 +320,7 @@
     }
 
     /* ===================================================
-       STAGE 6: 3D CAKE & MOVABLE KNIFE
+       STAGE 6: 3D CAKE & KNIFE
        =================================================== */
     #page-cake {
       background: radial-gradient(circle at center, #2b0833 0%, #0c0012 100%);
@@ -513,17 +452,23 @@
 </head>
 <body>
 
+  <!-- Floating Falling Flowers -->
   <canvas id="petal-canvas"></canvas>
 
   <!-- ==========================================
-       STAGE 1: ANIMATED YELLOW LANDING PAGE
+       STAGE 1: YELLOW LANDING PAGE (PURE SVG/HTML)
        ========================================== -->
-  <section class="page active" id="page-yellow-landing">
-    <!-- Arc for "HAPPY BIRTHDAY" -->
-    <div class="arc-text-wrapper" id="arc-container"></div>
+  <section class="page" id="page-yellow-landing">
+    <!-- Guaranteed Native SVG Semicircle Arc Text -->
+    <svg class="svg-arc-wrapper" viewBox="0 0 500 180">
+      <path id="curvePath" d="M 40,160 A 210,130 0 0,1 460,160" fill="none" />
+      <text font-family="'Cinzel', serif" font-weight="900" font-size="36" fill="#800f2f" letter-spacing="4" text-anchor="middle">
+        <textPath href="#curvePath" startOffset="50%">HAPPY BIRTHDAY</textPath>
+      </text>
+    </svg>
 
-    <!-- Letter by letter "SAKSHI" -->
-    <div class="sakshi-name-wrapper" id="sakshi-container"></div>
+    <!-- Guaranteed Native Cursive Name -->
+    <h1 class="sakshi-title-text">Sakshi</h1>
 
     <!-- Date Badge -->
     <div>
@@ -532,8 +477,8 @@
       </div>
     </div>
 
-    <!-- Clear, Big, Working NEXT Button -->
-    <div class="landing-next-btn-box">
+    <!-- 100% Working Guaranteed Next Button -->
+    <div>
       <button class="action-btn" onclick="goToPage('page-wheel')">
         NEXT ➔
       </button>
@@ -571,7 +516,7 @@
           <div class="wheel-list-row">4️⃣ You are the most beautiful soul ✨</div>
           <div class="wheel-list-row">5️⃣ You are the one made to love ♾️</div>
         </div>
-        <button class="action-btn" onclick="closeWheelModalAndNext()">
+        <button class="action-btn" onclick="goToPage('page-gallery')">
           Look at Our Memories ➔
         </button>
       </div>
@@ -597,4 +542,34 @@
       <div class="frosted-card"><span class="frosted-badge">7</span><img src="https://i.postimg.cc/p5hy8Vch/IMG-20250731-WA0006.jpg" /><div style="font-size:0.8rem; font-weight:600; color:#f7cad0; margin-top:8px;">My Favorite Face 🥰</div></div>
       <div class="frosted-card"><span class="frosted-badge">8</span><img src="https://i.postimg.cc/304WprfG/IMG-20251127-WA0036-3.jpg" /><div style="font-size:0.8rem; font-weight:600; color:#f7cad0; margin-top:8px;">Charming as Ever 🖤</div></div>
       <div class="frosted-card"><span class="frosted-badge">9</span><img src="https://i.postimg.cc/PvpNZfVb/IMG-20260114-WA0091.jpg" /><div style="font-size:0.8rem; font-weight:600; color:#f7cad0; margin-top:8px;">Movie Dates 🎬❤️</div></div>
-      <div class="frosted-card"><span class="frosted-badge">10</span><img src="https://i.postimg.cc/vxgD982m/IMG-20260310-WA0105-2.jpg" /><div style="font-size:0.8rem; font-weight:600; color:#f7cad0; margin-top:8px;">Forever & Always ♾️<
+      <div class="frosted-card"><span class="frosted-badge">10</span><img src="https://i.postimg.cc/vxgD982m/IMG-20260310-WA0105-2.jpg" /><div style="font-size:0.8rem; font-weight:600; color:#f7cad0; margin-top:8px;">Forever & Always ♾️</div></div>
+    </div>
+
+    <button class="action-btn" onclick="goToPage('page-letter')">
+      A Letter For You 💌 ➔
+    </button>
+  </section>
+
+  <!-- ==========================================
+       STAGE 4: UNFOLDING LOVE LETTER
+       ========================================== -->
+  <section class="page" id="page-letter">
+    <div class="envelope-box" onclick="unfoldMyLetter()">
+      <div class="beating-red-heart">❤️</div>
+    </div>
+    <p style="font-size: 1.1rem; color: #ffccd5; font-weight: 600; margin-top: 22px;">
+      💌 Click me to see message from me
+    </p>
+
+    <div class="letter-modal" id="letter-modal">
+      <div class="unfolded-parchment">
+        <span class="corner-heart ch-tl">❤️</span>
+        <span class="corner-heart ch-tr">💖</span>
+        <span class="corner-heart ch-bl">💖</span>
+        <span class="corner-heart ch-br">❤️</span>
+
+        <h3 style="font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: #d90429; margin-bottom: 6px;">
+          Dearest Sakshi,
+        </h3>
+        <div class="letter-body-text">
+HAPPY BIRTHDAY TO YOU....AAJ TUMHARE KO LIYE BHUT SPECIAL DIN HAI...I AM SORRY KI HUM TUMHARE SATH NHI HAI BUT HUM PHIR BHI CHAHTE HAI TUMH
