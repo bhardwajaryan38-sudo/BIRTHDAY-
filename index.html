@@ -21,7 +21,7 @@
       text-align: center;
     }
 
-    /* All Pages Default Hidden */
+    /* All Pages Hidden by Default */
     .page {
       display: none;
       min-height: 100vh;
@@ -33,7 +33,7 @@
       position: relative;
     }
 
-    /* Universal Buttons */
+    /* Primary Action Buttons */
     .action-btn {
       background: linear-gradient(135deg, #d90429, #800f2f);
       color: #fff;
@@ -57,11 +57,10 @@
        STAGE 1: YELLOW LANDING (ACTIVE BY DEFAULT)
        =================================================== */
     #page1 {
-      display: flex; /* Always visible on first load */
+      display: flex;
       background: radial-gradient(circle at center, #fff176 0%, #ffd000 55%, #f4a261 100%);
       color: #5c0017;
     }
-
     .svg-arc-wrapper {
       width: 100%;
       max-width: 380px;
@@ -69,7 +68,6 @@
       margin: 10px auto 0;
       display: block;
     }
-
     .sakshi-name-text {
       font-family: 'Great Vibes', cursive;
       font-size: 5.6rem;
@@ -79,7 +77,6 @@
       text-shadow: 0 4px 15px rgba(157, 2, 8, 0.3);
       display: block;
     }
-
     .date-badge {
       display: inline-flex;
       align-items: center;
@@ -306,7 +303,7 @@
     }
 
     /* ===================================================
-       STAGE 6: 3D CAKE & KNIFE
+       STAGE 6: LUXURY 3D ROUND CAKE & MASS CELEBRATION
        =================================================== */
     #page6 {
       background: radial-gradient(circle at center, #2b0833 0%, #0c0012 100%);
@@ -315,66 +312,174 @@
     .cake-arena {
       position: relative;
       width: 100%;
-      max-width: 420px;
-      height: 360px;
+      max-width: 440px;
+      height: 380px;
       display: flex;
       align-items: center;
       justify-content: center;
+      perspective: 800px;
+      margin: 10px 0;
     }
-    .black-forest-cake {
+
+    /* Golden Cake Platter */
+    .golden-platter {
+      position: absolute;
+      bottom: 25px;
+      width: 320px;
+      height: 50px;
+      background: radial-gradient(ellipse at center, #ffe066 0%, #d4af37 60%, #85581A 100%);
+      border-radius: 50%;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.4);
+      border: 3px solid #fff2a3;
+      z-index: 1;
+    }
+
+    /* Round 3D Cake Assembly */
+    .round-cake-assembly {
       position: relative;
-      width: 230px;
-      height: 150px;
+      width: 270px;
+      height: 190px;
       cursor: pointer;
+      z-index: 2;
     }
-    .cake-half-wrapper {
+
+    .cake-halves-container {
       display: flex;
       width: 100%;
       height: 100%;
+      transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
     }
-    .cake-left-half, .cake-right-half {
+
+    /* Left & Right Round Halves */
+    .cake-half {
       width: 50%;
       height: 100%;
       position: relative;
-      transition: transform 0.8s ease;
+      transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
     }
-    .cake-cylinder {
+
+    /* Cake Body: Chocolate Frosting */
+    .cake-round-body {
       width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, #2b1713 0%, #150b09 70%, #0d0605 100%);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-      border-top: 8px solid #fefae0;
-      position: relative;
-    }
-    .cake-left-half .cake-cylinder { border-radius: 25px 0 0 20px; }
-    .cake-right-half .cake-cylinder { border-radius: 0 25px 20px 0; }
-    .cake-decor-item { position: absolute; font-size: 1.3rem; z-index: 5; }
-    .cake-candle-stick {
+      height: 140px;
       position: absolute;
-      top: -38px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 10px;
-      height: 38px;
-      background: repeating-linear-gradient(45deg, #ff758c, #ff758c 6px, #ffffff 6px, #ffffff 12px);
-      border-radius: 4px;
+      bottom: 0;
+      background: linear-gradient(180deg, #3d1b14 0%, #200d09 60%, #110604 100%);
+      box-shadow: inset 0 10px 15px rgba(255, 255, 255, 0.08), 0 15px 30px rgba(0,0,0,0.7);
+    }
+    .cake-left .cake-round-body {
+      border-radius: 40px 0 0 45px;
+      border-right: 3px solid #ffccd5;
+    }
+    .cake-right .cake-round-body {
+      border-radius: 0 40px 45px 0;
+      border-left: 3px solid #ffccd5;
+    }
+
+    /* Top Round Cake Surface (3D Ellipse) */
+    .cake-top-ellipse {
+      position: absolute;
+      top: 15px;
+      width: 100%;
+      height: 75px;
+      background: radial-gradient(ellipse at center, #4a221a 0%, #29100a 80%);
+      border-top: 5px solid #ffccd5;
+    }
+    .cake-left .cake-top-ellipse {
+      border-radius: 135px 0 0 135px / 40px 0 0 40px;
+      border-right: 2px dashed rgba(255,255,255,0.25);
+    }
+    .cake-right .cake-top-ellipse {
+      border-radius: 0 135px 135px 0 / 0 40px 40px 0;
+      border-left: 2px dashed rgba(255,255,255,0.25);
+    }
+
+    .rosette {
+      position: absolute;
+      font-size: 1.4rem;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+    }
+    .flower {
+      position: absolute;
+      font-size: 1.5rem;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+      animation: gentleFloat 2.5s infinite alternate ease-in-out;
+    }
+    @keyframes gentleFloat {
+      from { transform: translateY(0); }
+      to { transform: translateY(-4px); }
+    }
+
+    /* 5 Glowing Candles Across Cake */
+    .candles-group {
+      position: absolute;
+      top: -20px;
+      width: 100%;
+      height: 60px;
+      display: flex;
+      justify-content: space-evenly;
       z-index: 10;
+      pointer-events: none;
     }
-    .candle-flame-glow {
+    .single-candle {
+      position: relative;
+      width: 9px;
+      height: 48px;
+      background: repeating-linear-gradient(45deg, #ff4d6d, #ff4d6d 6px, #ffffff 6px, #ffffff 12px);
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+    .candle-flame {
       position: absolute;
-      top: -18px;
+      top: -22px;
       left: 50%;
       transform: translateX(-50%);
       width: 14px;
-      height: 20px;
-      background: #ffbe0b;
+      height: 22px;
+      background: radial-gradient(ellipse at bottom, #ffbe0b 0%, #fb5607 70%);
       border-radius: 50% 50% 35% 35%;
-      box-shadow: 0 0 15px 6px #fb5607;
+      box-shadow: 0 0 18px 7px rgba(251, 86, 7, 0.8), 0 0 35px rgba(255, 190, 11, 0.6);
+      animation: flickerFlame 0.4s infinite alternate;
     }
-    .cake-sliced .cake-left-half { transform: translateX(-40px) rotate(-6deg); }
-    .cake-sliced .cake-right-half { transform: translateX(40px) rotate(6deg); }
-    .cake-sliced .candle-flame-glow { display: none; }
+    @keyframes flickerFlame {
+      0% { transform: translateX(-50%) scale(1); }
+      100% { transform: translateX(-50%) scale(1.15) rotate(2deg); }
+    }
 
+    /* Cut separation state */
+    .cake-sliced .cake-left { transform: translateX(-50px) rotate(-8deg); }
+    .cake-sliced .cake-right { transform: translateX(50px) rotate(8deg); }
+    .cake-sliced .candle-flame { display: none; }
+
+    /* Shockwave Boom Ring */
+    .shockwave {
+      position: absolute;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      border: 8px solid #ffd700;
+      box-shadow: 0 0 40px #ff007f;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 25;
+    }
+    .shockwave.boom {
+      animation: shockwaveExpand 0.8s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+    }
+    @keyframes shockwaveExpand {
+      0% { width: 10px; height: 10px; opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      100% { width: 500px; height: 500px; opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
+    }
+
+    /* Rocket */
+    #flying-rocket {
+      display: none;
+      position: absolute;
+      font-size: 3.5rem;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    /* Draggable / Tappable Knife */
     #knife-draggable {
       position: fixed;
       bottom: 25px;
@@ -384,27 +489,26 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      padding: 10px 18px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      padding: 12px 22px;
       border-radius: 50px;
-      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      border: 2px solid rgba(255, 215, 0, 0.7);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      animation: knifePulse 1.8s infinite ease-in-out;
+    }
+    @keyframes knifePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
     }
     .knife-icon {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       transform: rotate(-45deg);
       display: inline-block;
     }
-    #flying-rocket {
-      display: none;
-      position: absolute;
-      font-size: 3rem;
-      z-index: 100;
-      pointer-events: none;
-    }
 
     /* ===================================================
-       STAGE 7: FINAL CLIMAX
+       STAGE 7: FINAL CLIMAX MESSAGE
        =================================================== */
     #page7 {
       background: radial-gradient(circle at center, #350847 0%, #12011a 100%);
@@ -426,7 +530,7 @@
       font-weight: 700;
     }
 
-    /* Confetti Canvas */
+    /* Fullscreen Effects Canvas */
     #fx-canvas {
       position: fixed;
       top: 0; left: 0;
@@ -437,30 +541,26 @@
   </style>
 
   <!-- =========================================================
-       CRITICAL NAVIGATION ENGINE (Placed in HEAD: ZERO DELAY)
+       CRITICAL ZERO-DELAY NAVIGATION ENGINE (IN HEAD)
        ========================================================= -->
   <script>
     function goTo(nextPageId) {
-      // 1. Hide every single page
       var allPages = document.getElementsByClassName('page');
       for (var i = 0; i < allPages.length; i++) {
         allPages[i].style.display = 'none';
       }
       
-      // 2. Close modals if open
       var wModal = document.getElementById('wheel-modal');
       if (wModal) wModal.style.display = 'none';
       var lModal = document.getElementById('letter-modal');
       if (lModal) lModal.style.display = 'none';
 
-      // 3. Show targeted page instantly
       var target = document.getElementById(nextPageId);
       if (target) {
         target.style.display = 'flex';
       }
       window.scrollTo(0, 0);
 
-      // 4. If arriving at wheel, draw wheel
       if (nextPageId === 'page2') {
         setTimeout(drawWheel, 50);
       }
@@ -469,14 +569,13 @@
 </head>
 <body>
 
-  <!-- FX Canvas for Confetti -->
+  <!-- Fullscreen Particle, Firework & Flower Canvas -->
   <canvas id="fx-canvas"></canvas>
 
   <!-- ==========================================
        STAGE 1: YELLOW LANDING (ALWAYS VISIBLE)
        ========================================== -->
   <section class="page" id="page1">
-    <!-- Curved SVG Banner -->
     <svg class="svg-arc-wrapper" viewBox="0 0 500 170">
       <path id="curvePath" d="M 40,150 A 210,120 0 0,1 460,150" fill="none" />
       <text font-family="'Cinzel', serif" font-weight="900" font-size="34" fill="#800f2f" letter-spacing="4" text-anchor="middle">
@@ -484,17 +583,14 @@
       </text>
     </svg>
 
-    <!-- Native Script Name -->
     <h1 class="sakshi-name-text">Sakshi</h1>
 
-    <!-- Date Badge -->
     <div>
       <div class="date-badge">
         <span>🎂</span> 25 : 09 : 2004 <span>✨</span>
       </div>
     </div>
 
-    <!-- 100% BULLETPROOF NEXT BUTTON -->
     <div>
       <button type="button" class="action-btn" onclick="goTo('page2')">
         NEXT ➔
@@ -518,7 +614,6 @@
       SPIN NOW 🎯
     </button>
 
-    <!-- Wheel Reveal Modal -->
     <div class="modal-overlay" id="wheel-modal">
       <div class="modal-box">
         <h3 style="font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: #ffd700; margin-bottom: 8px;">
@@ -572,7 +667,7 @@
        STAGE 4: UNFOLDING LOVE LETTER
        ========================================== -->
   <section class="page" id="page4">
-    <div class="envelope-box" onclick="document.getElementById('letter-modal').style.display='flex'; launchConfetti();">
+    <div class="envelope-box" onclick="document.getElementById('letter-modal').style.display='flex'; triggerExplosion();">
       <div class="beating-red-heart">❤️</div>
     </div>
     <p style="font-size: 1.1rem; color: #ffccd5; font-weight: 600; margin-top: 22px;">
@@ -619,50 +714,68 @@ HAPPY BIRTHDAY TO YOU....AAJ TUMHARE KO LIYE BHUT SPECIAL DIN HAI...I AM SORRY K
   </section>
 
   <!-- ==========================================
-       STAGE 6: 3D CAKE & KNIFE
+       STAGE 6: 3D ROUND CAKE & MASS CELEBRATION
        ========================================== -->
   <section class="page" id="page6">
-    <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.6rem; color: #ff99c8; margin-bottom: 5px;">
+    <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.7rem; color: #ff99c8; margin-bottom: 4px;">
       Cut Your Birthday Cake! 🎂
     </h2>
-    <p style="font-size: 0.95rem; color: #f7cad0; margin-bottom: 10px;">
-      Drag knife or simply TAP on the cake to cut!
+    <p style="font-size: 0.95rem; color: #f7cad0; margin-bottom: 12px;">
+      Drag knife onto cake or simply TAP on the cake to cut!
     </p>
 
     <div class="cake-arena">
+      <!-- Shockwave Blast Ring -->
+      <div class="shockwave" id="cake-shockwave"></div>
+      
+      <!-- Flying Rocket -->
       <div id="flying-rocket">🚀</div>
 
-      <div class="black-forest-cake" id="cake-object" onclick="cutTheCake()">
-        <div class="cake-half-wrapper" id="cake-split">
-          <div class="cake-left-half">
-            <div class="cake-cylinder">
-              <span class="cake-decor-item" style="top:-14px; left:18px;">🌸</span>
-              <span class="cake-decor-item" style="top:-12px; left:55px;">🌺</span>
-              <span class="cake-decor-item" style="top:25px; left:20px; font-size:1rem;">🍒</span>
-              <span class="cake-decor-item" style="top:55px; left:40px; font-size:1rem;">🍒</span>
-            </div>
-          </div>
-          <div class="cake-right-half">
-            <div class="cake-cylinder">
-              <span class="cake-decor-item" style="top:-14px; right:55px;">🌸</span>
-              <span class="cake-decor-item" style="top:-12px; right:18px;">🌺</span>
-              <span class="cake-decor-item" style="top:25px; right:20px; font-size:1rem;">🍒</span>
-              <span class="cake-decor-item" style="top:55px; right:40px; font-size:1rem;">🍒</span>
-            </div>
-          </div>
+      <!-- Golden Cake Platter -->
+      <div class="golden-platter"></div>
+
+      <!-- 3D Round Cake Assembly -->
+      <div class="round-cake-assembly" id="cake-object" onclick="cutTheCake()">
+        
+        <!-- 5 Glowing Candles Across Cake Top -->
+        <div class="candles-group">
+          <div class="single-candle"><div class="candle-flame"></div></div>
+          <div class="single-candle"><div class="candle-flame"></div></div>
+          <div class="single-candle"><div class="candle-flame"></div></div>
+          <div class="single-candle"><div class="candle-flame"></div></div>
+          <div class="single-candle"><div class="candle-flame"></div></div>
         </div>
 
-        <span class="cake-decor-item" style="top:-18px; left:50%; transform:translateX(-50%); font-size:1.5rem;">🍒</span>
-        <div class="cake-candle-stick">
-          <div class="candle-flame-glow" id="candle-flame"></div>
+        <div class="cake-halves-container" id="cake-split">
+          <!-- Left Half -->
+          <div class="cake-half cake-left">
+            <div class="cake-top-ellipse">
+              <span class="rosette" style="top:10px; left:18px;">🍦</span>
+              <span class="flower" style="top:26px; left:35px;">🌸</span>
+              <span class="rosette" style="top:8px; left:75px;">🍒</span>
+              <span class="flower" style="top:32px; left:90px;">🌺</span>
+            </div>
+            <div class="cake-round-body"></div>
+          </div>
+
+          <!-- Right Half -->
+          <div class="cake-half cake-right">
+            <div class="cake-top-ellipse">
+              <span class="flower" style="top:32px; right:90px;">🌺</span>
+              <span class="rosette" style="top:8px; right:75px;">🍒</span>
+              <span class="flower" style="top:26px; right:35px;">🌸</span>
+              <span class="rosette" style="top:10px; right:18px;">🍦</span>
+            </div>
+            <div class="cake-round-body"></div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Knife -->
+    <!-- Draggable / Tappable Knife -->
     <div id="knife-draggable" onclick="cutTheCake()">
       <span class="knife-icon">🔪</span>
-      <span style="font-size:0.95rem; font-weight:700; color:#ffd700;">Place knife on cake 🎂</span>
+      <span style="font-size:0.95rem; font-weight:800; color:#ffd700;">Cut Cake 🎂</span>
     </div>
 
     <button type="button" class="action-btn" id="cake-next-btn" style="display: none; margin-top: 25px;" onclick="goTo('page7')">
@@ -678,18 +791,18 @@ HAPPY BIRTHDAY TO YOU....AAJ TUMHARE KO LIYE BHUT SPECIAL DIN HAI...I AM SORRY K
       <p class="final-sakshi-quote">
         "SAKSHI JOO SMILE ABHI TUMHARE FACE PR HAI HUM CHAHTE HAI HMESHA AISE HI RHE.....I JUST LOVE YOU ♥️......"
       </p>
-      <div style="font-size: 4rem; color: #ff3366; margin-top: 20px;">💖</div>
-      <p style="font-size: 1rem; color: #ffd700; margin-top: 15px; font-weight: 600;">
+      <div style="font-size: 4.5rem; color: #ff3366; margin-top: 20px;">💖</div>
+      <p style="font-size: 1.1rem; color: #ffd700; margin-top: 15px; font-weight: 700;">
         Forever & Always Yours ✨
       </p>
     </div>
   </section>
 
   <!-- ==========================================
-       STANDALONE PAGE LOGIC (Pure Vanilla JS)
+       ENGINE JAVASCRIPT & UNLOCKED AUDIO
        ========================================== -->
   <script>
-    /* 1. Wheel Drawing & Spin */
+    /* 1. Wheel Logic */
     var wheelCanvas = document.getElementById('wheel-canvas');
     var wheelOptions = [
       "Cutest Person 🥰",
@@ -751,48 +864,91 @@ HAPPY BIRTHDAY TO YOU....AAJ TUMHARE KO LIYE BHUT SPECIAL DIN HAI...I AM SORRY K
       wheelCanvas.style.transform = 'rotate(' + currentAngle + 'deg)';
 
       setTimeout(function() {
-        launchConfetti();
+        triggerExplosion();
         setTimeout(function() {
           document.getElementById('wheel-modal').style.display = 'flex';
-          launchConfetti();
+          triggerExplosion();
         }, 1200);
       }, 4500);
     }
 
-    /* 2. Cake Cut Mechanics */
+    /* 2. Cake Cut Mechanics, Shockwave & Rockets */
     var cakeCutDone = false;
+    var audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        var AudioCtx = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioCtx();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
     function cutTheCake() {
       if (cakeCutDone) return;
       cakeCutDone = true;
 
+      // Unlocks mobile audio immediately on direct user gesture
+      var ctx = getAudioContext();
+
+      // Split the round cake halves
       document.getElementById('cake-split').classList.add('cake-sliced');
-      document.getElementById('candle-flame').style.display = 'none';
       document.getElementById('knife-draggable').style.display = 'none';
 
+      // Big Shockwave BOOM
+      var shock = document.getElementById('cake-shockwave');
+      shock.style.left = '50%';
+      shock.style.top = '50%';
+      shock.classList.add('boom');
+
+      // Launch Rocket
       var rocket = document.getElementById('flying-rocket');
       rocket.style.display = 'block';
       rocket.style.left = '50%';
       rocket.style.top = '50%';
       rocket.style.transform = 'translate(-50%, -50%)';
-      rocket.style.transition = 'transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1.2s';
+      rocket.style.transition = 'transform 1.1s cubic-bezier(0.1, 0.8, 0.2, 1), opacity 1.1s';
 
       setTimeout(function() {
-        rocket.style.transform = 'translate(-50%, -240px) scale(1.6)';
+        rocket.style.transform = 'translate(-50%, -320px) scale(2)';
         rocket.style.opacity = '0';
       }, 50);
 
+      // Fireworks Boom, Continuous Flower Rain & Unlocked Birthday Music
       setTimeout(function() {
-        playHappyBirthdayMelody();
-        launchConfetti();
+        playHappyBirthdayMelody(ctx);
+        startMassiveCelebrationShow();
         document.getElementById('cake-next-btn').style.display = 'inline-flex';
-      }, 1000);
+      }, 900);
     }
 
-    /* 3. Pure Web Audio Synthesizer (No MP3 files needed) */
-    function playHappyBirthdayMelody() {
+    /* 3. Drag knife support */
+    var knife = document.getElementById('knife-draggable');
+    var cakeObj = document.getElementById('cake-object');
+    var isDraggingKnife = false;
+
+    knife.addEventListener('touchstart', function() { isDraggingKnife = true; }, { passive: true });
+    window.addEventListener('touchmove', function(e) {
+      if (!isDraggingKnife || cakeCutDone) return;
+      var t = e.touches[0];
+      knife.style.left = (t.clientX - 50) + 'px';
+      knife.style.top = (t.clientY - 25) + 'px';
+      var kRect = knife.getBoundingClientRect();
+      var cRect = cakeObj.getBoundingClientRect();
+      if (kRect.right > cRect.left + 30 && kRect.left < cRect.right - 30 &&
+          kRect.bottom > cRect.top + 30 && kRect.top < cRect.bottom - 30) {
+        cutTheCake();
+      }
+    }, { passive: true });
+    window.addEventListener('touchend', function() { isDraggingKnife = false; });
+
+    /* 4. Synthesizer Happy Birthday Melody with Passed Active Context */
+    function playHappyBirthdayMelody(ctx) {
       try {
-        var AudioCtx = window.AudioContext || window.webkitAudioContext;
-        var ctx = new AudioCtx();
+        if (!ctx) ctx = getAudioContext();
         var notes = [
           261.6, 261.6, 293.7, 261.6, 349.2, 329.6,
           261.6, 261.6, 293.7, 261.6, 392.0, 349.2,
@@ -805,14 +961,13 @@ HAPPY BIRTHDAY TO YOU....AAJ TUMHARE KO LIYE BHUT SPECIAL DIN HAI...I AM SORRY K
           0.3, 0.2, 0.5, 0.5, 0.5, 0.5, 0.8,
           0.3, 0.2, 0.5, 0.5, 0.5, 1.0
         ];
-
         var t = ctx.currentTime + 0.05;
         for (var i = 0; i < notes.length; i++) {
           var osc = ctx.createOscillator();
           var gain = ctx.createGain();
           osc.type = 'triangle';
           osc.frequency.setValueAtTime(notes[i], t);
-          gain.gain.setValueAtTime(0.2, t);
+          gain.gain.setValueAtTime(0.3, t);
           gain.gain.exponentialRampToValueAtTime(0.001, t + durations[i] - 0.05);
           osc.connect(gain);
           gain.connect(ctx.destination);
@@ -823,53 +978,120 @@ HAPPY BIRTHDAY TO YOU....AAJ TUMHARE KO LIYE BHUT SPECIAL DIN HAI...I AM SORRY K
       } catch(e) {}
     }
 
-    /* 4. Built-in Lightweight Confetti Engine */
-    function launchConfetti() {
-      var c = document.getElementById('fx-canvas');
-      if (!c) return;
-      var ctx = c.getContext('2d');
-      c.width = window.innerWidth;
-      c.height = window.innerHeight;
-      var pieces = [];
-      var colors = ['#ff0055', '#ffbe0b', '#fb5607', '#ff007f', '#00f5d4', '#7b2cbf', '#ffffff'];
+    /* 5. Massive Fireworks & Shower of Flowers Engine */
+    var canvas = document.getElementById('fx-canvas');
+    var ctx = canvas.getContext('2d');
+    var fireworks = [];
+    var flowers = [];
 
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function triggerExplosion() {
+      var colors = ['#ff0055', '#ffd700', '#00f5d4', '#ff758c', '#ffffff', '#7b2cbf'];
       for (var i = 0; i < 90; i++) {
-        pieces.push({
-          x: c.width / 2,
-          y: c.height / 2,
-          vx: (Math.random() - 0.5) * 18,
-          vy: (Math.random() - 0.7) * 18,
-          size: Math.random() * 8 + 6,
+        fireworks.push({
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          vx: (Math.random() - 0.5) * 22,
+          vy: (Math.random() - 0.7) * 22,
+          size: Math.random() * 7 + 4,
           color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: 1,
+          decay: Math.random() * 0.015 + 0.015
+        });
+      }
+    }
+
+    function startMassiveCelebrationShow() {
+      // 1. Initial Mega Boom
+      triggerExplosion();
+
+      // 2. Continuous Fireworks Bursts
+      var burstCount = 0;
+      var fInterval = setInterval(function() {
+        var x = Math.random() * (canvas.width - 100) + 50;
+        var y = Math.random() * (canvas.height / 2) + 60;
+        var colors = ['#ff0055', '#ffd700', '#00f5d4', '#ff3366', '#ffffff', '#fb5607'];
+        for (var i = 0; i < 70; i++) {
+          fireworks.push({
+            x: x, y: y,
+            vx: (Math.random() - 0.5) * 20,
+            vy: (Math.random() - 0.5) * 20,
+            size: Math.random() * 6 + 3,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            alpha: 1,
+            decay: Math.random() * 0.015 + 0.012
+          });
+        }
+        burstCount++;
+        if (burstCount > 8) clearInterval(fInterval);
+      }, 400);
+
+      // 3. Dense Shower of Falling Flowers
+      var flowerIcons = ['🌸', '🌺', '🌹', '🌼', '💖', '✨', '🎉'];
+      for (var j = 0; j < 45; j++) {
+        flowers.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * -canvas.height,
+          char: flowerIcons[Math.floor(Math.random() * flowerIcons.length)],
+          size: Math.random() * 18 + 20,
+          vy: Math.random() * 2.2 + 2,
+          vx: (Math.random() - 0.5) * 1.5,
           rot: Math.random() * 360,
-          speed: (Math.random() - 0.5) * 12
+          rotSpeed: (Math.random() - 0.5) * 3
         });
       }
 
-      var frames = 0;
-      function render() {
-        ctx.clearRect(0, 0, c.width, c.height);
-        for (var i = 0; i < pieces.length; i++) {
-          var p = pieces[i];
+      function loopFX() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Render Fireworks
+        for (var i = fireworks.length - 1; i >= 0; i--) {
+          var p = fireworks[i];
           p.x += p.vx;
           p.y += p.vy;
-          p.vy += 0.35;
-          p.rot += p.speed;
+          p.vy += 0.3;
+          p.alpha -= p.decay;
+          if (p.alpha <= 0) {
+            fireworks.splice(i, 1);
+            continue;
+          }
           ctx.save();
-          ctx.translate(p.x, p.y);
-          ctx.rotate((p.rot * Math.PI) / 180);
+          ctx.globalAlpha = p.alpha;
           ctx.fillStyle = p.color;
-          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
           ctx.restore();
         }
-        frames++;
-        if (frames < 80) {
-          requestAnimationFrame(render);
-        } else {
-          ctx.clearRect(0, 0, c.width, c.height);
+
+        // Render Falling Flowers
+        for (var k = 0; k < flowers.length; k++) {
+          var f = flowers[k];
+          f.y += f.vy;
+          f.x += f.vx;
+          f.rot += f.rotSpeed;
+          ctx.save();
+          ctx.translate(f.x, f.y);
+          ctx.rotate((f.rot * Math.PI) / 180);
+          ctx.font = f.size + 'px serif';
+          ctx.fillText(f.char, -f.size / 2, f.size / 2);
+          ctx.restore();
+
+          if (f.y > canvas.height + 40) {
+            f.y = -30;
+            f.x = Math.random() * canvas.width;
+          }
         }
+
+        requestAnimationFrame(loopFX);
       }
-      render();
+      loopFX();
     }
   </script>
 </body>
