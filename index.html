@@ -39,7 +39,6 @@
       position: relative;
     }
     
-    /* Clean fade without 3D transforms to protect mobile viewport buttons */
     .page.active {
       display: flex;
       animation: smoothFade 0.4s ease-out forwards;
@@ -64,7 +63,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: transform 0.15s, box-shadow 0.15s;
+      transition: transform 0.15s;
     }
     .action-btn:active { transform: scale(0.95); }
 
@@ -84,28 +83,30 @@
     }
 
     /* ===================================================
-       STAGE 1: GUARANTEED YELLOW SCRATCH CARD OVERLAY
+       STAGE 1: FAIL-PROOF YELLOW SCRATCH CARD OVERLAY
        =================================================== */
-    #scratch-container {
+    #scratch-overlay {
       position: fixed;
       top: 0; left: 0;
       width: 100vw; height: 100vh;
       background: #FFD000;
-      z-index: 100000;
+      z-index: 999999;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       touch-action: none;
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
     #scratch-canvas {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
       z-index: 2;
+      touch-action: none;
     }
-    .scratch-underlay-text {
+    .scratch-content {
       position: relative;
       z-index: 1;
       padding: 20px;
@@ -113,18 +114,37 @@
     }
     .scratch-bold-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: 2.8rem;
+      font-size: 3rem;
       font-weight: 900;
       color: #111;
       letter-spacing: 2px;
       text-transform: uppercase;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .scratch-sparkles {
+      font-size: 2.2rem;
+      margin: 12px 0;
+      animation: sparkleRotate 2s infinite alternate ease-in-out;
+    }
+    @keyframes sparkleRotate {
+      from { transform: scale(0.9) rotate(-10deg); }
+      to { transform: scale(1.15) rotate(10deg); }
     }
     .scratch-subtext {
       font-size: 1.1rem;
-      color: #333;
-      margin-top: 10px;
-      font-weight: 600;
+      color: #222;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .scratch-tap-pill {
+      background: #111;
+      color: #ffd000;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 10px 22px;
+      border-radius: 50px;
+      display: inline-block;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
     }
 
     /* ===================================================
@@ -535,17 +555,19 @@
   <!-- ==========================================
        STAGE 1: YELLOW SCRATCH CARD OVERLAY
        ========================================== -->
-  <div id="scratch-container" onclick="handleScratchTrigger()">
+  <div id="scratch-overlay" onclick="dismissScratchCard()">
     <canvas id="scratch-canvas"></canvas>
-    <div class="scratch-underlay-text">
-      <h1 class="scratch-bold-title">SCRATCH ME ✨</h1>
-      <p class="scratch-subtext">Rub or tap anywhere to reveal your surprise 🎁</p>
+    <div class="scratch-content">
+      <h1 class="scratch-bold-title">SCRATCH ME</h1>
+      <div class="scratch-sparkles">✨ 🎁 ✨</div>
+      <p class="scratch-subtext">Rub or tap anywhere to reveal your surprise</p>
+      <div class="scratch-tap-pill">👉 Tap or Swipe to Open 👈</div>
     </div>
   </div>
 
   <!-- ==========================================
        STAGE 2: PINK BIRTHDAY REVEAL
-       ========================================= -->
+       ========================================== -->
   <section class="page active" id="page-reveal">
     <div class="pink-hero-card">
       <div class="hbd-banner-text">HAPPY BIRTHDAY</div>
@@ -559,7 +581,6 @@
         Happiest Birthday To My Entire Universe ❤️
       </p>
 
-      <!-- Centered Next Button for Easy Tapping -->
       <div style="margin-top: 25px;">
         <button class="action-btn" onclick="goToPage('page-wheel')">
           Next Page ➔
@@ -624,6 +645,4 @@
     <div class="frosted-glass-grid">
       <div class="frosted-card"><span class="frosted-badge">1</span><img src="https://i.postimg.cc/sGc76g4s/IMG-20250523-115750791-HDR-AE-2.jpg" /><div style="font-size:0.8rem; font-weight:600; color:#f7cad0; margin-top:8px;">Pretty in Blue 💙</div></div>
       <div class="frosted-card"><span class="frosted-badge">2</span><img src="https://i.postimg.cc/xNYL3zH6/IMG-20260404-181956849-HDR-AE-2.jpg" /><div style="font-size:0.8rem; font-weight:600; color:#f7cad0; margin-top:8px;">Gentle Smile 💫</div></div>
-      <div class="frosted-card"><span class="frosted-badge">3</span><img src="https://i.postimg.cc/5HhBjG23/IMG-20260409-180733096-PORTRAIT-2.jpg" /><div style="font-size:0.8rem; font-weight:600; color:#f7cad0; margin-top:8px;">Cafe Dates ☕</div></div>
-      <div class="frosted-card"><span class="frosted-badge">4</span><img src="https://i.postimg.cc/14Zdj7rr/IMG-20260421-003916520-AE.jpg" /><div style="font-size:0.8rem; font-weight:600; color:#f7cad0; margin-top:8px;">Prettier Than Flowers 🌺</div></div>
-      <div class="frosted-card"><span class="frosted-badge">5</s
+    
